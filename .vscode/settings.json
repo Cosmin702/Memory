@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "192.168.1.5",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "memory_game",
+            "username": "root",
+            "database": "memory_game"
+        }
+    ]
+}

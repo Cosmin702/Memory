@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JSON Data Example</title>
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch('http://cosmincloud.iliadboxos.it:25984/memory_game/1');
+                if (response.ok) {
+                    const data = await response.json();
+                    const paragraph = document.getElementById('dataParagraph');
+                    paragraph.textContent = JSON.stringify(data.utenti);
+                    return data;
+                } else {
+                    throw new Error(`Fetch failed: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function sendData() {
+            try {
+                let data = await fetchData();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                const utente = {
+                    username: username,
+                    password: password
+                };
+
+                data.utenti.push(utente);
+
+                const newData = JSON.stringify(data);
+
+                const response = await fetch('http://cosmincloud.iliadboxos.it:25984/memory_game/1', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: newData
+                });
+
+                if (response.ok) {
+                    console.log('Data sent successfully');
+                } else {
+                    throw new Error(`Send failed: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <button onclick="fetchData()">Fetch JSON Data</button>
+    <p id="dataParagraph"></p>
+
+    <form onsubmit="sendData()">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+</body>
+
+</html>
