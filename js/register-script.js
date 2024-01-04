@@ -1,5 +1,8 @@
+const url = "https://cosmincloud.iliadboxos.it:26984/memory_game/1";
+
 async function registra() {
     let data = await fetchDati();
+
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
@@ -10,6 +13,7 @@ async function registra() {
 
     for (let i = 0; i < data.utenti.length; i++) 
     {
+        
         if (data.utenti[i].username == username) 
         {
             alert("Username già utilizzato!");
@@ -21,8 +25,8 @@ async function registra() {
     
     let newData = JSON.stringify(data);
 
-    const response = await fetch(
-        "http://cosmincloud.iliadboxos.it:25984/memory_game/1",
+    const response = await fetch( 
+        "url",
         {
             method: "PUT",
             headers: {
@@ -32,7 +36,8 @@ async function registra() {
         }
     );
 
-    if (response.ok) {
+    if (response.ok) 
+    {
         alert("Registrazione effettuata con successo!");
     } 
     else 
@@ -43,14 +48,15 @@ async function registra() {
 }
 
 async function fetchDati() {
-    const response = await fetch(
-        "http://cosmincloud.iliadboxos.it:25984/memory_game/1"
-    );
+    const response = await fetch("url");
 
-    if (response.ok) {
+    if (response.ok) 
+    {
         const data = await response.json();
         return data;
-    } else {
+    } 
+    else 
+    {
         console.error("Errore: ${response.status}");
     }
 }
@@ -60,14 +66,11 @@ async function login() {
 
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
-
-    let utente = {
-        username: username,
-        password: CryptoJS.AES.encrypt(password, password).toString(),
-    };
     
     for (let i = 0; i < data.utenti.length; i++) {
-        if (data.utenti[i].username == utente.username && CryptoJS.AES.decrypt(data.utenti[i].password, password).toString(CryptoJS.enc.Utf8) == password) 
+        
+        if (data.utenti[i].username == username 
+            && CryptoJS.AES.decrypt(data.utenti[i].password, password).toString(CryptoJS.enc.Utf8) == password) 
         {
             alert("Login effettuato con successo!");
             window.location.href = "index.html";
