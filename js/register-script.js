@@ -26,7 +26,7 @@ async function registra() {
     let newData = JSON.stringify(data);
 
     const response = await fetch( 
-        "url",
+        url,
         {
             method: "PUT",
             headers: {
@@ -48,12 +48,11 @@ async function registra() {
 }
 
 async function fetchDati() {
-    const response = await fetch("url");
+    const response = await fetch(url);
 
     if (response.ok) 
     {
-        const data = await response.json();
-        return data;
+        return await response.json();
     } 
     else 
     {
