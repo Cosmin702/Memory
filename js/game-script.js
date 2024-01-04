@@ -5,7 +5,7 @@ var punti = 0;
 var tentativi = 0;
 // Function per girare la carta
 function myFunction(carta) {
-    if(on == true)
+    if(on == true || carta.style.transform == "rotateY(180deg)")
     {
         return;
     }
@@ -36,17 +36,6 @@ function generaSequenza()
         sequenza[indice] = i;
     }
 
-    /*
-    for(let i = 0; i < sequenza.length; i++)
-    {
-        n = Math.floor(Math.random() * ncarte);
-        while(sequenza.find(element => element == n) == undefined)
-        {
-            sequenza[i] = n;
-            n = Math.floor(Math.random() * ncarte);
-        }
-    }
-    */
     return sequenza;
 }
 
@@ -101,5 +90,43 @@ function calcoloPunteggio()
 {
     var totale = 1000 - ((tentativi - punti) * 10);
     document.getElementById("punteggio").innerHTML = "Punteggio: " + totale;
+    caricaPunteggio(totale);
+}
 
+async function maxPunteggio() 
+{
+    let punteggio = JSON.parse(localStorage.getItem("punteggio"));
+    document.getElementById("username").innerHTML = punteggio.username;
+    document.getElementById("max-punteggio").innerHTML = "Max punteggio: " + punteggio.facile;
+}
+
+async function caricaPunteggio(totale)
+{
+    let punteggio = JSON.parse(localStorage.getItem("punteggio"));
+
+    if(totale > punteggio.facile)
+    {
+        punteggio.facile = totale;
+        localStorage.setItem("punteggio", JSON.stringify(punteggio));
+        let dati = await fetchDati(url2);
+        dati.punteggio[punteggio.id] = punteggio;
+        const response = await fetch(
+            url2, 
+                {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(dati),
+            });
+        
+        if (response.ok) 
+        {
+            console.log("Registrazione effettuata con successo!");
+        } 
+        else 
+        {
+            console.error("Errore: ${response.status}");
+        }
+    }
 }

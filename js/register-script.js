@@ -1,7 +1,9 @@
-const url = "https://cosmincloud.iliadboxos.it:26984/memory_game/1";
+const url1 = "http://cosmincloud.iliadboxos.it:25984/memory_game/1";
+const url2 = "http://cosmincloud.iliadboxos.it:25984/memory_game/2";
 
 async function registra() {
-    let data = await fetchDati();
+    let dati = await fetchDati(url1);
+    let punti = await fetchDati(url2);
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
@@ -11,43 +13,35 @@ async function registra() {
         password: CryptoJS.AES.encrypt(password, password).toString(),
     };
 
-    for (let i = 0; i < data.utenti.length; i++) 
+    for (let i = 0; i < dati.utenti.length; i++) 
     {
         
-        if (data.utenti[i].username == username) 
+        if (dati.utenti[i].username == username) 
         {
             alert("Username già utilizzato!");
             return;
         }
     }
 
-    data.utenti.push(utente);
+    dati.utenti.push(utente);
     
-    let newData = JSON.stringify(data);
+    pushDati(url1, dati);
+    
+    let punteggio = {
+        id: dati.utenti.length - 1,
+        username: username,
+        facile: 0,
+        medio: 0,
+        difficile: 0,
+    };
 
-    const response = await fetch( 
-        url,
-        {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: newData,
-        }
-    );
+    punti.punteggio.push(punteggio);
 
-    if (response.ok) 
-    {
-        alert("Registrazione effettuata con successo!");
-    } 
-    else 
-    {
-        alert("Registrazione non effettuata!");
-        console.error("Errore: ${response.status}");
-    }
+    pushDati(url2, punti);
+
 }
 
-async function fetchDati() {
+async function fetchDati(url) {
     const response = await fetch(url);
 
     if (response.ok) 
@@ -60,23 +54,64 @@ async function fetchDati() {
     }
 }
 
+async function pushDati(url, newDati) {
+
+    response = await fetch(
+        url,
+        {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newDati),
+        }
+    );
+
+    if (response.ok) 
+    {
+        console.log("Dati caricati con successo!");
+    } 
+    else 
+    {
+        console.error("Errore: ${response.status}");
+    }
+    return response;
+}
+
+
 async function login() {
-    let data = await fetchDati();
+    let dati = await fetchDati(url1);
 
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
     
-    for (let i = 0; i < data.utenti.length; i++) {
+    for (let i = 0; i < dati.utenti.length; i++) {
         
-        if (data.utenti[i].username == username 
-            && CryptoJS.AES.decrypt(data.utenti[i].password, password).toString(CryptoJS.enc.Utf8) == password) 
+        if (dati.utenti[i].username == username 
+            && CryptoJS.AES.decrypt(dati.utenti[i].password, password).toString(CryptoJS.enc.Utf8) == password) 
         {
             alert("Login effettuato con successo!");
-            window.location.href = "index.html";
+            caricaUtente(i);
             return;
         }
     }
 
     alert("Username o password errati!");
+}
+
+async function caricaUtente(id) {
+    const dati = await fetchDati(url2);
+    
+    for(let i = 0; i < dati.punteggio.length; i++)
+    {
+        if(dati.punteggio[i].id == id)
+        {
+            localStorage.setItem("punteggio", JSON.stringify(dati.punteggio[i]));
+            window.location.href = "index.html";
+            return;
+        }
+    }
+
+
 }
 

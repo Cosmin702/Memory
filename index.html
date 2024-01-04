@@ -1,172 +1,83 @@
+<!-- FILEPATH: /c:/Users/ameli/OneDrive - ITI E.Majorana/Desktop/Compiti/TPSIT/Memory/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory 4x2</title>
-    <link rel="stylesheet" href="css/game-style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
-    <script src="js/game-script.js"></script>
-</head>
-<body onload="assegnaImmagine()">
-    <div class="tutto">
-    <div class="ui">
-        <h1>Memory 4x2</h1>
-        <h2>Seleziona le carte uguali</h2>
-        <h3 id="punteggio">Punteggio: 0</h3>
-        <h3 id="vittoria">Hai vinto!</h3>
-        <h3 id="sconfitta">Hai perso!</h3>
-        <button onclick="riavvia()">Riavvia</button>
-    </div>
-    <div class="griglia">
-        <!--Carta 1-->
-        <!--Questo div é necessario per dare l'effetto di prostettiva nella rotazione della carta-->
-        <div class="carta">
-            <!--Al click della carta, viene chiamata una funzione, necessaria per girare la carta
-            e se sono state selezionate le carte giuste.-->
-            <div class="carta-interna" id="0" onclick="myFunction(this)">
-                <div class="carta-fronte">
-                    <img src="" alt="">
-                </div>
-                <div class="carta-retro">
-                    <img src="img/retro.png" alt="">
-                </div>
-            </div>
-        </div>
-
-        <!--Carta 2-->
-        <div class="carta">
-            <div class="carta-interna" id="1" onclick="myFunction(this)">
-                <div class="carta-fronte">
-                    <img src="" alt="">
-                </div>
-                <div class="carta-retro">
-                    <img src="img/retro.png" alt="">
-                </div>
-            </div>
-        </div>
-
-        <!--Carta 3-->
-        <div class="carta">
-             <div class="carta-interna" id="2" onclick="myFunction(this)">
-                <div class="carta-fronte">
-                    <img src="" alt="">
-                </div>
-                <div class="carta-retro">
-                    <img src="img/retro.png" alt="">
-                </div>
-            </div>
-        </div>
-
-        <!--Carta 4-->
-        <div class="carta">
-             <div class="carta-interna" id="3" onclick="myFunction(this)">
-                <div class="carta-fronte">
-                    <img src="" alt="">
-                </div>
-                <div class="carta-retro">
-                    <img src="img/retro.png" alt="">
-                </div>
-            </div>
-        </div>
+    <title>Select Difficulty</title>
+    <script src="js/main.js"></script>
+    <script src="js/register-script.js"></script>
+    <style>
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         
-        <!--Carta 5-->
-        <div class="carta">
-             <div class="carta-interna" id="4" onclick="myFunction(this)">
-                <div class="carta-fronte">
-                    <img src="" alt="">
-                </div>
-                <div class="carta-retro">
-                    <img src="img/retro.png" alt="">
-                </div>
+        .dropdown {
+            padding: 10%;
+        }
+        
+        .difficolta {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .dropdown:hover .difficolta {
+            display: block;
+        }
+
+        .login-register {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 30%;
+        }
+    </style>
+</head>
+<body onload="utente(), punteggi()">
+    <div class="main">
+        <div>
+            <p id="username">Username: </p>
+        </div>
+
+        <div class="dropdown">
+            <span>Mouse over me</span>
+            <div class="difficolta">
+                <button onclick="window.location.href = 'facile.html'">Easy</button>
+                <button onclick="window.location.href = 'medio.html'">Medium</button>
+                <button onclick="window.location.href = 'difficile.html'">Hard</button>
             </div>
         </div>
 
-        <!--Carta 6-->
-        <div class="carta">
-             <div class="carta-interna" id="5" onclick="myFunction(this)">
-                <div class="carta-fronte">
-                    <img src="" alt="">
-                </div>
-                <div class="carta-retro">
-                    <img src="img/retro.png" alt="">
-                </div>
-            </div>
+        <div class="login-register">
+            <button onclick="window.location.href = 'login.html'">Login</button>
+            <button onclick="window.location.href = 'register.html'">Register</button>
         </div>
 
-        <!--Carta 7-->
-        <div class="carta">
-             <div class="carta-interna" id="6" onclick="myFunction(this)">
-                <div class="carta-fronte">
-                    <img src="" alt="">
-                </div>
-                <div class="carta-retro">
-                    <img src="img/retro.png" alt="">
-                </div>
-            </div>
+        <div>
+            <p>Punteggio: </p>
+            <table id="score-table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Facile</th>
+                        <th>Medio</th>
+                        <th>Difficile</th>
+                    </tr>
+                </thead>
+                <tbody id="table">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tbody>
+            </table>
         </div>
-
-        <!--Carta 8-->
-        <div class="carta">
-             <div class="carta-interna" id="7" onclick="myFunction(this)">
-                <div class="carta-fronte">
-                    <img src="" alt="">
-                </div>
-                <div class="carta-retro">
-                    <img src="img/retro.png" alt="">
-                </div>
-            </div>
-        </div>
-        <!--Carta 9-->
-        <div class="carta">
-            <div class="carta-interna" id="8" onclick="myFunction(this)">
-               <div class="carta-fronte">
-                   <img src="img/2_of_clubs.png" alt="">
-               </div>
-               <div class="carta-retro">
-                   <img src="img/retro.png" alt="">
-               </div>
-           </div>
-       </div>
-
-       <!--Carta 10-->
-       <div class="carta">
-            <div class="carta-interna" id="9" onclick="myFunction(this)">
-               <div class="carta-fronte">
-                   <img src="img/2_of_clubs.png" alt="">
-               </div>
-               <div class="carta-retro" >
-                   <img src="img/retro.png" alt="">
-               </div>
-           </div>
-       </div>
-
-       <!--Carta 11-->
-       <div class="carta">
-            <div class="carta-interna" id="10" onclick="myFunction(this)">
-               <div class="carta-fronte" >
-                   <img src="img/2_of_clubs.png" alt="">
-               </div>
-               <div class="carta-retro" >
-                   <img src="img/retro.png" alt="">
-               </div>
-           </div>
-       </div>
-
-       <!--Carta 12-->
-       <div class="carta">
-            <div class="carta-interna" id="11" onclick="myFunction(this)">
-               <div class="carta-fronte" >
-                   <img src="img/2_of_clubs.png" alt="">
-               </div>
-               <div class="carta-retro" >
-                   <img src="img/retro.png" alt="">
-               </div>
-           </div>
-       </div>
-
-    
     </div>
-</div>
 </body>
 </html>
