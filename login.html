@@ -4,15 +4,20 @@
     <title>Login Page</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
     <script src="js/register-script.js"></script>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/main.css">
+
 </head>
 <body>
-    <h1>Login</h1>
     <form onsubmit="login();return false">
+        <h1>Accedi</h1>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required><br><br>
-        <input type="submit" value="Login">
+        <button class="accedi" type="submit">accedi</button>
+        <button class="registrati" onclick="window.location.href = 'register.html'">Registrati</button>
+        <button class="home" onclick="window.location.href = 'index.html'">Home</button>
     </form>
 </body>
 </html>

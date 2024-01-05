@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory facile</title>
+    <link rel="stylesheet" href="css/game-style.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/difficile.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="js/game-script.js"></script>
+    <script src="js/register-script.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body onload="assegnaImmagine(), maxPunteggio()">
+
+    <div class="tutto">
+        <div class="ui">
+            <h1>Memory difficile</h1>
+            <h2>Seleziona le carte uguali</h2>
+            <h3 id="username">Username: </h3>
+            <h3 id="max-punteggio">Max punteggio: 0</h3>
+            <h3 id="punteggio">Punteggio: 0</h3>
+            <button class="home" onclick="window.location.href = 'index.html'">Home</button>
+        </div>
+        <div class="griglia">
+            <!--Carta 1-->
+            <!--Questo div é necessario per dare l'effetto di prostettiva nella rotazione della carta-->
+            <div class="carta">
+                <!--Al click della carta, viene chiamata una funzione, necessaria per girare la carta
+            e se sono state selezionate le carte giuste.-->
+                <div class="carta-interna" id="0" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 2-->
+            <div class="carta">
+                <div class="carta-interna" id="1" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 3-->
+            <div class="carta">
+                <div class="carta-interna" id="2" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 4-->
+            <div class="carta">
+                <div class="carta-interna" id="3" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 5-->
+            <div class="carta">
+                <div class="carta-interna" id="4" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 6-->
+            <div class="carta">
+                <div class="carta-interna" id="5" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 7-->
+            <div class="carta">
+                <div class="carta-interna" id="6" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 8-->
+            <div class="carta">
+                <div class="carta-interna" id="7" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 9-->
+            <div class="carta">
+                <div class="carta-interna" id="8" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Carta 10-->
+            <div class="carta">
+                <div class="carta-interna" id="9" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 11-->
+            <div class="carta">
+                <div class="carta-interna" id="10" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 12-->
+            <div class="carta">
+                <div class="carta-interna" id="11" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 13-->
+            <div class="carta">
+                <div class="carta-interna" id="12" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 14-->
+            <div class="carta">
+                <div class="carta-interna" id="13" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 15-->
+            <div class="carta">
+                <div class="carta-interna" id="14" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 16-->
+            <div class="carta">
+                <div class="carta-interna" id="15" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 17-->
+            <div class="carta">
+                <div class="carta-interna" id="16" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 18-->
+            <div class="carta">
+                <div class="carta-interna" id="17" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Carta 19-->
+            <div class="carta">
+                <div class="carta-interna" id="18" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Carta 20-->
+            <div class="carta">
+                <div class="carta-interna" id="19" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Carta 21-->
+            <div class="carta">
+                <div class="carta-interna" id="20" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Carta 22-->
+            <div class="carta">
+                <div class="carta-interna" id="21" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Carta 23-->
+            <div class="carta">
+                <div class="carta-interna" id="22" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Carta 24-->
+            <div class="carta">
+                <div class="carta-interna" id="23" onclick="myFunction(this)">
+                    <div class="carta-fronte">
+                        <img src="" alt="">
+                    </div>
+                    <div class="carta-retro">
+                        <img src="img/retro.png" alt="">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

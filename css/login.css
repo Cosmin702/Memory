@@ -1,0 +1,42 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+
+h1{
+    text-align: center;
+    margin-top: 0%;
+}
+
+form{
+    padding: 20px;
+    background-color: rgb(255, 240, 240);
+    border-radius:16px;
+    margin-top: 30vh;
+}
+
+input[type=text] {
+	appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .2em solid #E91E63;
+	background: rgba(#E91E63, .2);
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+	color: #E91E63;
+}
+
+input[type=password] {
+	appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .2em solid #E91E63;
+	background: rgba(#E91E63, .2);
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+	color: #E91E63;
+}
+
+.registrati, .home{
+	margin-top: 10px;
+}

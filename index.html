@@ -1,83 +1,94 @@
-<!-- FILEPATH: /c:/Users/ameli/OneDrive - ITI E.Majorana/Desktop/Compiti/TPSIT/Memory/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Difficulty</title>
+    <title>Memory Game</title>
     <script src="js/main.js"></script>
     <script src="js/register-script.js"></script>
+    <link rel="stylesheet" href="css/main.css">
     <style>
         .main {
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-        
-        .dropdown {
-            padding: 10%;
-        }
-        
-        .difficolta {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-        
-        .dropdown:hover .difficolta {
-            display: block;
-        }
+        }     
 
+        .difficolta {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 30%;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
         .login-register {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
             width: 30%;
+            gap: 10px;
+        }
+
+
+        .score-table {
+            margin-top: 50px;
+            width: 50%;
+            border-collapse: collapse;
+        }
+
+        .score-table th,
+        .score-table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .score-table th {
+            background-color: #f9f9f9;
+        }
+
+        .score-table td {
+            background-color: #fff;
         }
     </style>
 </head>
 <body onload="utente(), punteggi()">
     <div class="main">
-        <div>
-            <p id="username">Username: </p>
-        </div>
 
-        <div class="dropdown">
-            <span>Mouse over me</span>
-            <div class="difficolta">
-                <button onclick="window.location.href = 'facile.html'">Easy</button>
-                <button onclick="window.location.href = 'medio.html'">Medium</button>
-                <button onclick="window.location.href = 'difficile.html'">Hard</button>
-            </div>
-        </div>
+        <h2 id="username">Username: </h2>
 
         <div class="login-register">
-            <button onclick="window.location.href = 'login.html'">Login</button>
-            <button onclick="window.location.href = 'register.html'">Register</button>
+            <button onclick="window.location.href = 'login.html'">accedi</button>
+            <button class="registrati" onclick="window.location.href = 'register.html'">registrati</button>
+            <button onclick="logout()">Esci</button>
+        </div>
+        
+        <h3>Scegli la difficoltà</h3>
+
+        <div class="difficolta">
+            <button onclick="window.location.href = 'facile.html'">facile</button>
+            <button onclick="window.location.href = 'medio.html'">medio</button>
+            <button onclick="window.location.href = 'difficile.html'">difficile</button>
         </div>
 
-        <div>
-            <p>Punteggio: </p>
-            <table id="score-table">
-                <thead>
-                    <tr>
-                        <th>Username</th>
-                        <th>Facile</th>
-                        <th>Medio</th>
-                        <th>Difficile</th>
-                    </tr>
-                </thead>
-                <tbody id="table">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tbody>
-            </table>
-        </div>
+
+        <h3>Punteggio: </h3>
+
+        <table class="score-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Facile</th>
+                    <th>Medio</th>
+                    <th>Difficile</th>
+                </tr>
+            </thead>
+            <tbody id="table">
+                <tr>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

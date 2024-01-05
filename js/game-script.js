@@ -68,10 +68,14 @@ function controlloCarte(carta1)
         setTimeout(function() {
             if(punti == sequenza.length/2)
             {
-                calcoloPunteggio();
-                alert("Hai vinto!");
+                confetti({
+                    particleCount: 150,
+                    spread: 180
+
+                  });                
+                  calcoloPunteggio();
             }
-    }, 800); 
+        }, 800); 
     }
     else
     {
@@ -88,7 +92,7 @@ function controlloCarte(carta1)
 
 function calcoloPunteggio()
 {
-    var totale = 1000 - ((tentativi - punti) * 10);
+    var totale = 100 - ((tentativi - punti) * 10);
     document.getElementById("punteggio").innerHTML = "Punteggio: " + totale;
     caricaPunteggio(totale);
 }
@@ -96,6 +100,18 @@ function calcoloPunteggio()
 async function maxPunteggio() 
 {
     let punteggio = JSON.parse(localStorage.getItem("punteggio"));
+    if (punteggio == null || punteggio.id == -1)
+    {
+        punteggio = {
+            id: -1,
+            username: "Guest",
+            facile: 0,
+            medio: 0,
+            difficile: 0,
+        };
+        localStorage.setItem("punteggio", JSON.stringify(punteggio));
+        alert("I tuoi punteggi verranno salvati solo se ti registri!");
+    }
     document.getElementById("username").innerHTML = punteggio.username;
     document.getElementById("max-punteggio").innerHTML = "Max punteggio: " + punteggio.facile;
 }
@@ -108,25 +124,14 @@ async function caricaPunteggio(totale)
     {
         punteggio.facile = totale;
         localStorage.setItem("punteggio", JSON.stringify(punteggio));
-        let dati = await fetchDati(url2);
-        dati.punteggio[punteggio.id] = punteggio;
-        const response = await fetch(
-            url2, 
-                {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(dati),
-            });
         
-        if (response.ok) 
-        {
-            console.log("Registrazione effettuata con successo!");
-        } 
-        else 
-        {
-            console.error("Errore: ${response.status}");
+        if(punteggio.id != -1){
+            let dati = await fetchDati(url2);
+            dati.punteggio[punteggio.id] = punteggio;
+            
+            pushDati(url2, dati);    
         }
+        
+        maxPunteggio();
     }
 }

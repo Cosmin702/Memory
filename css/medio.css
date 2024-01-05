@@ -1,0 +1,7 @@
+.griglia {
+    grid-template-columns: auto auto auto auto;
+  }
+
+  .carta, .carta-interna, img {
+    max-height: 22vh;  
+  }

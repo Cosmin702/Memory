@@ -41,43 +41,6 @@ async function registra() {
 
 }
 
-async function fetchDati(url) {
-    const response = await fetch(url);
-
-    if (response.ok) 
-    {
-        return await response.json();
-    } 
-    else 
-    {
-        console.error("Errore: ${response.status}");
-    }
-}
-
-async function pushDati(url, newDati) {
-
-    response = await fetch(
-        url,
-        {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(newDati),
-        }
-    );
-
-    if (response.ok) 
-    {
-        console.log("Dati caricati con successo!");
-    } 
-    else 
-    {
-        console.error("Errore: ${response.status}");
-    }
-    return response;
-}
-
 
 async function login() {
     let dati = await fetchDati(url1);
@@ -115,3 +78,21 @@ async function caricaUtente(id) {
 
 }
 
+function logout() {
+    if(JSON.parse(localStorage.getItem("punteggio")).id == -1)
+    {
+        alert("Non hai eseguito l'accesso!");
+        return;
+    }
+    punteggio = {
+        id: -1,
+        username: "Guest",
+        facile: 0,
+        medio: 0,
+        difficile: 0,
+    };
+    localStorage.setItem("punteggio", JSON.stringify(punteggio));    
+    document.getElementById("username").innerHTML = "Bentornato: " + punteggio.username;
+    alert("Sei uscito dal tuo account!");
+
+}

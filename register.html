@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Register Page</title>
+    <title>Register Page</title>   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
     <script src="js/register-script.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-    <h1>Register</h1>
     <form onsubmit="registra();return false">
+        <h1>Registrati</h1>
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
         
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required><br><br>
-        
-        <input type="submit" value="Register">
-        <a href="login.html">LOGIN</a>
+        <button onclick="window.location.href = 'login.html'">Accedi</button>
+        <button class="registrati" type="submit" value="Register">Registrati</button>
+        <button class="home" onclick="window.location.href = 'index.html'">Home</button>
     </form>
 </body>
 </html>
