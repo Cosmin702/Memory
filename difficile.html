@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="it">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-160L6310VN"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-160L6310VN');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory facile</title>
@@ -13,9 +21,10 @@
     <script src="js/game-script.js"></script>
     <script src="js/register-script.js"></script>
     <script src="js/main.js"></script>
+
 </head>
 
-<body onload="assegnaImmagine(), maxPunteggio()">
+<body onload="assegnaImmagine(), maxPunteggio('difficile')">
 
     <div class="tutto">
         <div class="ui">

@@ -4,6 +4,7 @@
     --primary: #c2404e;
     --secondary: #e59099;
     --accent: #e35463;
+    --backgroud2: rgb(255, 240, 240);
 }
 
 body{
@@ -86,4 +87,10 @@ button:active {
 }
 .registrati::after {
   background-color: var(--secondary);
+}
+
+@media screen and (max-width: 700px) {
+  button {
+    font-size: 12px;
+  }
 }

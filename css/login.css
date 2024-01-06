@@ -10,7 +10,7 @@ h1{
 
 form{
     padding: 20px;
-    background-color: rgb(255, 240, 240);
+    background-color: var(--backgroud2);
     border-radius:16px;
     margin-top: 30vh;
 }
