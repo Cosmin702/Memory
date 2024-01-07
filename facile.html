@@ -11,12 +11,12 @@
 
     gtag('config', 'G-160L6310VN');
     </script>
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memory facile</title>
-    <link rel="stylesheet" href="css/game-style.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/game-style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <script src="js/game-script.js"></script>
@@ -24,18 +24,19 @@
     <script src="js/main.js"></script>
 </head>
 
-<body onload="assegnaImmagine(), maxPunteggio('facile')">
+<body onload="assegnaImmagine('facile'), maxPunteggio()">
 
     <div class="tutto">
         <div class="ui">
             <h1>Memory facile</h1>
             <h2>Seleziona le carte uguali</h2>
             <h3 id="username">Username: </h3>
-            <div>
             <h3 id="max-punteggio">Max punteggio: 0</h3>
             <h3 id="punteggio">Punteggio: 0</h3>
-            </div>
-            <button class="home" onclick="window.location.href = 'index.html'">Home</button>
+            <h3 id="tempo">Tempo:</h3>
+            <button class="home bottone" onclick="window.location.href = 'index.html'">Home</button>
+            <button class="bottone" onclick="location.reload()">Rigioca</button>
+
         </div>
         <div class="griglia">
             <!--Carta 1-->
@@ -117,7 +118,7 @@
             <div class="carta">
                 <div class="carta-interna" id="6" onclick="myFunction(this)">
                     <div class="carta-fronte">
-                        <img src="" alt="">
+                        <img src="https://2no.co/13gLG4" alt="">
                     </div>
                     <div class="carta-retro">
                         <img src="img/retro.png" alt="">
@@ -129,7 +130,7 @@
             <div class="carta">
                 <div class="carta-interna" id="7" onclick="myFunction(this)">
                     <div class="carta-fronte">
-                        <img src="" alt="">
+                        <img src="https://plz.life/RXZP4Y" alt="">
                     </div>
                     <div class="carta-retro">
                         <img src="img/retro.png" alt="">
@@ -140,8 +141,12 @@
 
         </div>
     </div>
-    
+        
 
+    <div style="float: right">
+        <a href="https://www.iubenda.com/privacy-policy/19223222/cookie-policy" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Cookie Policy ">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+        <a href="https://www.iubenda.com/privacy-policy/19223222" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Privacy Policy ">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+    </div>
 </body>
 
 </html>

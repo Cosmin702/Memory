@@ -21,7 +21,7 @@ body{
 
 
 /* CSS */
-button {
+.bottone {
   appearance: button;
   background-color: var(--primary);
   border: solid transparent;
@@ -52,7 +52,7 @@ button {
   width: 100%;
 }
 
-button:after {
+.bottone:after {
   background-clip: padding-box;
   background-color: var(--accent);
   border: solid transparent;
@@ -67,21 +67,21 @@ button:after {
   z-index: -1;
 }
 
-button:main,
-button:focus {
+.bottone:main,
+.bottone:focus {
   user-select: auto;
 }
 
-button:hover:not(:disabled) {
+.bottone:hover:not(:disabled) {
   filter: brightness(1.1);
   -webkit-filter: brightness(1.1);
 }
 
-button:disabled {
+.bottone:disabled {
   cursor: auto;
 }
 
-button:active {
+.bottone:active {
   border-width: 4px 0 0;
   background: none;
 }
@@ -90,7 +90,7 @@ button:active {
 }
 
 @media screen and (max-width: 700px) {
-  button {
+  .bottone {
     font-size: 12px;
   }
 }

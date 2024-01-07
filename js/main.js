@@ -3,19 +3,30 @@ async function punteggi() {
     // Faccio una richiesta asincrona al database per ottenere i dati
     let data = await fetchDati(url2);
 
+    // Ordino l'array punteggio in base alla media dei 3 punteggi
+    data.punteggio.sort((a, b) => {
+        const mediaA = (a.facile + a.medio + a.difficile) / 3;
+        const mediaB = (b.facile + b.medio + b.difficile) / 3;
+        return mediaB - mediaA;
+    });
+
     // Ottengo l'elemento con id table dal documento
     let table = document.getElementById("table");
 
+    // Rimuovo tutte le righe esistenti dalla tabella
+    while (table.rows.length > 1) {
+        table.deleteRow(1);
+    }
+
     // Per ogni elemento dell'array punteggio contenuto nei dati
-    for (let i = 0; i < data.punteggio.length; i++) 
-    {
+    for (let i = 0; i < data.punteggio.length; i++) {
         // Inserisco una nuova riga nella tabella alla posizione i+1
-        let row = table.insertRow(i+1);
+        let row = table.insertRow(i + 1);
         // Inserisco quattro celle nella riga
         let cell1 = row.insertCell(0);
         let cell2 = row.insertCell(1);
         let cell3 = row.insertCell(2);
-        let cell4= row.insertCell(3);
+        let cell4 = row.insertCell(3);
 
         // Assegno il contenuto delle celle con i valori dell'elemento corrispondente dell'array punteggio
         cell1.innerHTML = data.punteggio[i].username;
@@ -24,7 +35,7 @@ async function punteggi() {
         cell4.innerHTML = data.punteggio[i].difficile;
 
         // Aggiungo la riga alla tabella
-        table.appendChild(row)
+        table.appendChild(row);
     }
 }
 
