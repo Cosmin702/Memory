@@ -1,24 +1,14 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-160L6310VN"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-160L6310VN');
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
     <script src="js/register-script.js"></script>
     <script src="js/main.js"></script>
-    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
     <form onsubmit="login();return false">
@@ -27,9 +17,10 @@
         <input type="text" id="username" name="username" required><br><br>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required><br><br>
-        <button class="accedi" type="submit">accedi</button>
-        <button class="registrati" onclick="window.location.href = 'register.html'">Registrati</button>
-        <button class="home" onclick="window.location.href = 'index.html'">Home</button>
+        <button class="accedi bottone" type="submit">accedi</button>
+        <button class="registrati bottone" onclick="window.location.href = 'register.html'">Registrati</button>
+        <button class="home bottone" onclick="window.location.href = 'index.html'">Home</button>
     </form>
+
 </body>
 </html>

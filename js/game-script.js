@@ -4,6 +4,7 @@ var on = false; // Variabile che indica se le carte sono in fase di controllo
 var punti = 0;
 var tentativi = 0;
 var difficoltá;
+var timer = 0;
 
 // Funzione per girare la carta
 function myFunction(carta) {
@@ -12,7 +13,9 @@ function myFunction(carta) {
     {
         return;
     }
-
+    if(carta2 == undefined && tentativi == 0){
+        timer = Date.now();
+    }
     // Altrimenti, giro la carta di 180 gradi e controllo se è uguale alla carta precedente
     carta.style.transform = "rotateY(180deg)";
     controlloCarte(carta);
@@ -52,8 +55,10 @@ function generaSequenza()
 }
 
 // Funzione che assegna le immagini alle carte
-function assegnaImmagine()
+function assegnaImmagine(pagina)
 {
+    difficoltá = pagina;
+
     sequenza = generaSequenza();
     // Ottengo tutti gli elementi con classe carta-fronte e tag img
     let immagini = document.querySelectorAll(".carta-fronte > img");    
@@ -117,21 +122,26 @@ function controlloCarte(carta1)
 
 // Funzione che calcola il punteggio finale
 function calcoloPunteggio()
-{
-    var totale = 100 - ((tentativi - punti) * 20/punti);
+{    
+    let tempo = Date.now() - timer;
+    tempo = tempo / 1000;
+    document.getElementById("tempo").innerHTML = "Tempo: " + tempo + " secondi";
+    
+    var totale = Math.floor(100 - ((tentativi - punti) * 25/punti) - tempo/punti);
     // Modifico il contenuto dell'elemento con id punteggio con il valore calcolato e carico il punteggio nel localStorage e nel database
     document.getElementById("punteggio").innerHTML = "Punteggio: " + totale;
+
+
     caricaPunteggio(totale);
 }
 
 // Funzione asincrona che ottiene il punteggio massimo salvato nel localStorage
-async function maxPunteggio(pagina) 
+async function maxPunteggio() 
 {
-    difficoltá = pagina;
     // Ottengo il valore del punteggio dal localStorage e lo converto in un oggetto JSON
     let punteggio = JSON.parse(localStorage.getItem("punteggio"));
     
-    if (punteggio == null || punteggio.id == -1)
+    if (punteggio == null)
     {
         // Creo un nuovo oggetto punteggio con id -1, username Guest e tutti i valori a 0 e lo salvo nel localStorage
         punteggio = {
