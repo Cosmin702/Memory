@@ -9,7 +9,7 @@ var timer = 0;
 // Funzione per girare la carta
 function myFunction(carta) {
     // Se le carte sono in fase di controllo o la carta è già girata, esco dalla funzione
-    if(on == true || carta.style.transform == "rotateY(180deg)")
+    if(on == true || carta.style.transform == "rotateY(180deg)" || document.getElementById("username").innerHTML == "Username: ")
     {
         return;
     }
